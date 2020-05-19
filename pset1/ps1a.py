@@ -2,7 +2,7 @@
 
 #initial num
 current_savings = 0
-portion_down_payment = 0.25 #买房的首付金
+portion_down_payment = 0.25 
 #invest retrun  current_savings*r/12
 r = 0.04
 
