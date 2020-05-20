@@ -13,8 +13,8 @@ total_cost = int(input("Enter the cost of your dream home:  "))
 
 def main():
     month = 0
-    while current_saving <= total_cost * portion_down_payment:
-        current_saving = annual_salary/12*portion_down_payment + current_saving/12 *r
+    while current_savings <= total_cost * portion_down_payment:
+        current_savings = annual_salary/12*portion_down_payment + current_savings/12 *r
         month += 1
        print(f"Number of months: {month}")
     
