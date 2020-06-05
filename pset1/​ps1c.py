@@ -1,7 +1,6 @@
 
 
 
-
 def main():
 
     portion_down_payment = 0.25
@@ -27,7 +26,7 @@ def main():
     current_savings = 0
     while abs(total_cost * portion_down_payment-current_savings ) > 100 :
         step += 1
-        portion_saved = (rate_max + rate_min)/2
+        portion_saved = int((rate_max + rate_min)/2 +0.5)
         month_salary_portion=annual_salary*(portion_saved/10000)/12
 
         current_savings = 0
@@ -41,7 +40,7 @@ def main():
         else:
             rate_max = portion_saved
 
-    print(f"best saving rate:{ int(portion_saved + 0.5)/10000}")
+    print(f"best saving rate:{ portion_saved /10000}")
     print("steps in bisecton search:", step)
 
 
