@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/61691083/i-ran-into-a-recursionerror-when-i-ran-the-mit-6-0001-f16-pset5-ps5-py/62328974#62328974
+
+
+this may help with problem 10
