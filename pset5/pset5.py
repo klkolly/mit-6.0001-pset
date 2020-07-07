@@ -161,7 +161,7 @@ class TimeTrigger(Trigger):
     def get_datetime(self):
         return self.trigger
     
-    def change_trigger(self,trigger):
+    def change_trigger(self,EST_time):
         self.trigger = datetime.strptime(EST_time,"%d %b %Y %H:%M:%S")
 
 
