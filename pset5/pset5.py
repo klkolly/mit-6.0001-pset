@@ -284,11 +284,11 @@ def read_trigger_config(filename):
     
 
     print(lines) # for now, print it so you see what it contains!
-    #'3 Oct 2016 17:00:10'  not useful date
-    trigger_dict={'TITLE':TitleTrigger(''), 'DESCRIPTION':DescriptionTrigger(''), \
-                         'AFTER':AfterTrigger('3 Oct 2016 17:00:10') , 'BEFORE': BeforeTrigger('3 Oct 2016 17:00:10') ,         \
-                         'NOT':NotTrigger('')}
-    trigger_composite_dict={'AND':AndTrigger('',''), 'OR':OrTrigger('','')}
+    # dict of function 
+    trigger_dict={'TITLE':TitleTrigger, 'DESCRIPTION':DescriptionTrigger, \
+                         'AFTER':AfterTrigger , 'BEFORE': BeforeTrigger,  \
+                         'NOT':NotTrigger}
+    trigger_composite_dict={'AND':AndTrigger, 'OR':OrTrigger}
     
     
     triggerdict={}
@@ -301,12 +301,11 @@ def read_trigger_config(filename):
 
         
         if line_list[1] not in ['AND','OR','NOT']:
-            triggerdict[line_list[0]] = trigger_dict[line_list[1]]
-            triggerdict[line_list[0]].change_trigger(line_list[2])
+            triggerdict[line_list[0]] = trigger_dict[line_list[1]](line_list[2])
+            
         elif not line_list[1]=='OR':
-            triggerdict[line_list[0]] = trigger_composite_dict[line_list[1]]
-            triggerdict[line_list[0]].trigger1 = triggerdict[line_list[2]]
-            triggerdict[line_list[0]].trigger2 = triggerdict[line_list[3]]
+            triggerdict[line_list[0]] = trigger_composite_dict[line_list[1]](line_list[2], line_list[3])
+
         else:
             triggerdict[line_list[0]] =NotTrigger(line_list[2])
             
