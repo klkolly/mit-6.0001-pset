@@ -281,41 +281,42 @@ def read_trigger_config(filename):
     # line is the list of lines that you need to parse and for which you need
     # to build triggers
 
-    
 
-    print(lines) # for now, print it so you see what it contains!
-    # dict of function 
+
+    #print(lines) # for now, print it so you see what it contains!
+    # dict of function
     trigger_dict={'TITLE':TitleTrigger, 'DESCRIPTION':DescriptionTrigger, \
                          'AFTER':AfterTrigger , 'BEFORE': BeforeTrigger,  \
                          'NOT':NotTrigger}
     trigger_composite_dict={'AND':AndTrigger, 'OR':OrTrigger}
-    
-    
+
+
     triggerdict={}
     triggerlist=[]
-   
+    line_list=[]
+
     for line in lines:
         line_list=line.split(',')
-        if line_list[0]=='ADD':
-            break
-
         
+        if line_list[0]=='ADD':
+            break        
+
         if line_list[1] not in ['AND','OR','NOT']:
             triggerdict[line_list[0]] = trigger_dict[line_list[1]](line_list[2])
-            
-        elif not line_list[1]=='OR':
-            triggerdict[line_list[0]] = trigger_composite_dict[line_list[1]](line_list[2], line_list[3])
-
+            print(triggerdict[line_list[0]])
+        elif not line_list[1]=='OR':  #!=
+            triggerdict[line_list[0]] = trigger_composite_dict[line_list[1]](triggerdict[line_list[2]], triggerdict[line_list[3]])
+            print(triggerdict[line_list[0]])    
         else:
-            triggerdict[line_list[0]] =NotTrigger(line_list[2])
-            
-    print(triggerdict)
-    print(triggerdict['t1'].get_trigger())
+            triggerdict[line_list[0]] =NotTrigger(triggerdict[line_list[2]])
+            print(triggerdict[line_list[0]])
+    
     for i in range(1,len(line_list)):
         triggerlist.append(triggerdict[line_list[i]])
-    print(triggerlist)
-    return triggerlist
-    
+        
+        
+    return triggerlist    
+
 
 
 SLEEPTIME = 120 #seconds -- how often we poll
